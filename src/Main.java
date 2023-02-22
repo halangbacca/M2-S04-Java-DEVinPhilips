@@ -1,30 +1,22 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int idade = 0;
 
-        do {
-            try {
+        System.out.print("Digite a sua idade: ");
+        Scanner scanner = new Scanner(System.in);
+        int idade = scanner.nextInt();
 
-                System.out.print("Digite a sua idade: ");
-
-                Scanner scanner = new Scanner(System.in);
-                idade = scanner.nextInt();
-
-                if (idade < 0 || idade == 0 || idade > 100) {
-                    throw new Exception("Não foi possível determinar sua idade!");
-                }
-
-                scanner.close();
-
+        try {
+            if (idade < 0 || idade == 0 || idade > 100) {
+                throw new Exception();
+            } else {
                 System.out.println("Olá, você tem " + idade + " anos de idade!");
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
 
-        } while (idade < 0 || idade == 0 || idade > 100);
-
+        } catch (Exception e) {
+            throw new InputMismatchException("Não foi possível determinar sua idade!");
+        }
     }
 }
