@@ -3,20 +3,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        int idade = 0;
 
-        System.out.print("Digite a sua idade: ");
-        Scanner scanner = new Scanner(System.in);
-        int idade = scanner.nextInt();
+        do {
+            try {
+                System.out.print("Digite a sua idade: ");
+                Scanner scanner = new Scanner(System.in);
+                idade = scanner.nextInt();
 
-        try {
-            if (idade < 0 || idade == 0 || idade > 100) {
-                throw new Exception();
-            } else {
-                System.out.println("Olá, você tem " + idade + " anos de idade!");
+                if (idade < 0 || idade == 0 || idade > 100) {
+                    throw new InputMismatchException();
+                } else {
+                    System.out.println("Olá, você tem " + idade + " anos de idade!");
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Não foi possível determinar sua idade!\n");
             }
-
-        } catch (Exception e) {
-            throw new InputMismatchException("Não foi possível determinar sua idade!");
-        }
+        } while (idade < 0 || idade == 0 || idade > 100);
     }
 }
